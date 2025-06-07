@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EventPlus API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/eventos": {
+      "get": {
+        "summary": "Listar todos os eventos",
+        "responses": {
+          "200": {
+            "description": "Lista de eventos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar novo evento",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "descricao": { "type": "string" },
+                  "nomeOrganizador": { "type": "string" },
+                  "cpfOrganizador": { "type": "string" },
+                  "tipoEventoId": { "type": "integer" }
+                },
+                "required": ["nome", "nomeOrganizador", "cpfOrganizador", "tipoEventoId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Evento criado"
+          },
+          "404": {
+            "description": "TipoEvento não encontrado"
+          }
+        }
+      }
+    }
+  }
+}
